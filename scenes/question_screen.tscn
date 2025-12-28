@@ -1,0 +1,48 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmf55amb3amr5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tgqhu"]
+
+[node name="questionScreen" type="Node"]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -100.0
+offset_right = 500.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(800, 200)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="quoteToGuess" type="Label" parent="VBoxContainer/PanelContainer"]
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "	Quotes etc etc etc etc etc etc etc etc etc etc etc etc etc etc etc etc etc etc etc etc etc etc etc etc etc etc etc etc etc etc etc etc etc etc etc etc etc "
+label_settings = SubResource("LabelSettings_tgqhu")
+horizontal_alignment = 1
+autowrap_mode = 2
+autowrap_trim_flags = 0
+justification_flags = 161
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="M_Button" type="Button" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="N_Button" type="Button" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 2
+size_flags_horizontal = 3

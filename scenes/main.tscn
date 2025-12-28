@@ -1,0 +1,110 @@
+[gd_scene load_steps=7 format=3 uid="uid://ccdbwjjhqbja"]
+
+[ext_resource type="Script" uid="uid://y4lxpc73gp27" path="res://scripts/main.gd" id="1_o5qli"]
+[ext_resource type="Theme" uid="uid://1fa7n4autki0" path="res://quizTheme.tres" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://cmf55amb3amr5" path="res://scenes/question_screen.tscn" id="3_sugp2"]
+[ext_resource type="PackedScene" uid="uid://dtdymck51xe2y" path="res://scenes/answerPageExample.tscn" id="4_jyhfs"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_sugp2"]
+frequency = 0.0037
+fractal_type = 3
+fractal_octaves = 10
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jyhfs"]
+noise = SubResource("FastNoiseLite_sugp2")
+seamless = true
+normalize = false
+
+[node name="main" type="Node"]
+script = ExtResource("1_o5qli")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_0wfyh")
+color = Color(0.22105178, 0.23023897, 0.2865185, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.0627451)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("NoiseTexture2D_jyhfs")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="scoreLabel" type="Label" parent="CanvasLayer"]
+custom_minimum_size = Vector2(50, 50)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -96.0
+offset_top = -102.0
+offset_right = -46.0
+offset_bottom = -52.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "0/10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="startingScreen" type="Node" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="startingScreen"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="introText" type="Label" parent="startingScreen/VBoxContainer"]
+layout_mode = 2
+
+[node name="begin_game_button" type="Button" parent="startingScreen/VBoxContainer"]
+layout_mode = 2
+text = "click to begin
+"
+
+[node name="endingScreen" type="Node" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="endingScreen"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -79.5
+offset_top = -20.0
+offset_right = 79.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="outroText" type="Label" parent="endingScreen/VBoxContainer"]
+layout_mode = 2
+text = "temporary secretary"
+
+[node name="questionScreen" parent="." instance=ExtResource("3_sugp2")]
+
+[node name="AnswerPage" parent="." instance=ExtResource("4_jyhfs")]
+
+[connection signal="button_up" from="startingScreen/VBoxContainer/begin_game_button" to="." method="_on_begin_game_button_button_up"]
+[connection signal="button_up" from="questionScreen/VBoxContainer/HBoxContainer/M_Button" to="." method="_on_m_button_button_up"]
+[connection signal="button_up" from="questionScreen/VBoxContainer/HBoxContainer/N_Button" to="." method="_on_n_button_button_up"]
+[connection signal="button_up" from="AnswerPage/VBoxContainer/next_quote_button" to="." method="_on_next_quote_button_button_up"]
+
+[editable path="questionScreen"]
+[editable path="AnswerPage"]

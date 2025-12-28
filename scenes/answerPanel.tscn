@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://c2qjlmlf2fl0g"]
+
+[node name="AnswerPanel" type="PanelContainer"]
+custom_minimum_size = Vector2(1000, 200)
